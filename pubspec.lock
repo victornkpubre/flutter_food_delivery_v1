@@ -107,13 +107,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutterwave:
-    dependency: "direct main"
-    description:
-      name: flutterwave
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   geocoding:
     dependency: "direct main"
     description:
@@ -191,20 +184,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.1"
-  http:
-    dependency: transitive
-    description:
-      name: http
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.13.5"
-  http_parser:
-    dependency: transitive
-    description:
-      name: http_parser
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.1"
   intl:
     dependency: "direct main"
     description:
@@ -406,13 +385,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.8"
-  tripledes_nullsafety:
-    dependency: transitive
-    description:
-      name: tripledes_nullsafety
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   typed_data:
     dependency: transitive
     description:
@@ -428,12 +400,12 @@ packages:
     source: hosted
     version: "2.1.1"
   webview_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.0"
+    version: "3.0.4"
   webview_flutter_android:
     dependency: transitive
     description:
@@ -470,5 +442,5 @@ packages:
     source: hosted
     version: "0.2.0+1"
 sdks:
-  dart: ">=2.16.0 <3.0.0"
+  dart: ">=2.15.0 <3.0.0"
   flutter: ">=2.8.0"

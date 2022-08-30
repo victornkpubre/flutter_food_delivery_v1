@@ -292,7 +292,6 @@ class _CartPageState extends State<CartPage> {
                           cartController.clear();
                           Get.toNamed(GetRouter.getPaymentPage());
 
-
                           // if (Get.find<AuthController>().userLoggedIn()) {
                           //   if(Get.find<LocationController>().addressList.isEmpty){
                           //     Get.toNamed(GetRouter.getAddressPage());
