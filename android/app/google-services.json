@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "203406550987",
+    "project_id": "food-delivery-25b5c",
+    "storage_bucket": "food-delivery-25b5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203406550987:android:a1d7865ca6b296f5e1784e",
+        "android_client_info": {
+          "package_name": "com.dbestech.food_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203406550987-posjir81p4u6lk8ukk1gfdbguh76d9gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApNqAGp7RO17rR8GCYBI7SaIT0riF6nJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203406550987-posjir81p4u6lk8ukk1gfdbguh76d9gg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:food_delivery/data/repository/user_repo.dart';
+import 'package:food_delivery/models/firebase_user_model.dart';
 import 'package:food_delivery/models/response_model.dart';
 import 'package:food_delivery/models/user_model.dart';
 import 'package:get/get.dart';
@@ -11,11 +13,16 @@ class UserController extends GetxController implements GetxService {
   late UserModel _userModel;
   UserModel get userModel => _userModel;
 
+  late FirebaseUser _firebaseUser;
+  FirebaseUser get firebaseUser => _firebaseUser;
+
   UserController({required this.userRepo});
 
   Future<ResponseModel> getUserinfo() async {
     _isLoading = true;
     update();
+
+    //Get Laravel User
     Response response = await userRepo.getUserInfo();
     print("Gotten User Details"+response.body.toString());
     late ResponseModel responseModel;
@@ -27,6 +34,11 @@ class UserController extends GetxController implements GetxService {
     } else {
       responseModel = ResponseModel(false, response.statusText!);
     }
+
+    //Get Firebase User
+    
+
+
     _isLoading = false;
     update();
     return responseModel;

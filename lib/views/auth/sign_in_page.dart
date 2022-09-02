@@ -22,19 +22,23 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
+    var emailController = TextEditingController();
     var phoneController = TextEditingController();
     var passwordController = TextEditingController();
     var socialSignUpImages = ["t.png", "f.png", "g.png"];
 
     void _login( AuthController authController) {
+      String email = emailController.text.trim();
       String phone = phoneController.text.trim();
       String password = passwordController.text.trim();
 
-      if (phone.isEmpty) {
+      if (email.isEmpty) {
+        showCustomSnackBar("Type in your email", title: "Email address");
+      }
+      else if (phone.isEmpty) {
         showCustomSnackBar("Type in your phone", title: "Phone address");
       } else if (!GetUtils.isNumericOnly(phone)) {
-        showCustomSnackBar("Type in a valid phone number",
-            title: "Valid Phone number");
+        showCustomSnackBar("Type in a valid phone number", title: "Valid Phone number");
       } else if (password.isEmpty) {
         showCustomSnackBar("Type in your password", title: "Password");
       } else if (password.length < 6) {
@@ -43,6 +47,7 @@ class _SignInPageState extends State<SignInPage> {
       } else {
         showCustomSnackBar("All went well", title: "Perfect");
         SignInBody signInBody = SignInBody(
+          email: email,
           phone: phone,
           password: password,
         );
@@ -91,6 +96,11 @@ class _SignInPageState extends State<SignInPage> {
                     ),
 
                     //Form
+                    AppTextField(
+                        textController: emailController,
+                        hintText: "email",
+                        icon: Icons.email),
+                    SizedBox(height: Dimensions.height20),
                     AppTextField(
                         textController: phoneController,
                         hintText: "phone",
