@@ -4,7 +4,7 @@ class AppConstants {
 
   //production base url: static const String BASE_URL = "https://fingerfoodapplications.com/portfolios/a007/food_delivery_api";
   // local base url: static const String BASE_URL = "https://jrj6k4pcny.sharedwithexpose.com";
-  static const String BASE_URL = "https://no0wpcyswa.sharedwithexpose.com";
+  static const String BASE_URL = "https://kxrnbysfbq.sharedwithexpose.com";
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String UPLOADS_URL = "/uploads/";

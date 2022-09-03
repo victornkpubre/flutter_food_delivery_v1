@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_delivery/data/repository/auth_repo.dart';
+import 'package:food_delivery/data/repository/firebase_user_repo.dart';
 import 'package:food_delivery/models/firebase_user_model.dart';
 import 'package:food_delivery/models/response_model.dart';
 import 'package:food_delivery/models/signin_body_model.dart';
@@ -13,10 +14,10 @@ class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseUserRepo firebaseUserRepo;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  AuthController({required this.authRepo});
+  AuthController({required this.authRepo, required this.firebaseUserRepo});
 
   Future<ResponseModel> registration(SignUpBody signUpBody) async {
     _isLoading = true;
@@ -29,6 +30,7 @@ class AuthController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, response.body["token"]);
 
       //Firebase Registration
+      await firebaseRegisterUser(signUpBody);
 
     } else {
       responseModel = ResponseModel(false, response.statusText!);
@@ -50,6 +52,7 @@ class AuthController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, response.body["token"]);
 
       //Firebase Login
+      await firebaseLoginUser(signInBody);
 
     } else {
       responseModel = ResponseModel(false, response.statusText!);
@@ -72,7 +75,7 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.clearSharedData();
   }
 
-  firebaseLoginUser(SignInBody signInBody) async {
+  Future<void> firebaseLoginUser(SignInBody signInBody) async {
     String email = signInBody.email;
     String password = signInBody.password;
     try {
@@ -87,37 +90,23 @@ class AuthController extends GetxController implements GetxService {
     }
   }
 
-  void firebaseRegisterUser(int id, SignUpBody signUpBody) async {  
+  Future<void> firebaseRegisterUser(SignUpBody signUpBody) async {  
     String name = signUpBody.name;
     String email = signUpBody.email;
     String password = signUpBody.password;
     try {
-      if(name.isNotEmpty && email.isNotEmpty && password.isNotEmpty){
-        UserCredential cred = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-  
-        var user = FirebaseUser(
-          uid: cred.user!.uid,
-          name: name,
-          email: email,
-          phone: signUpBody.phone
-        );
-
-        // Client user = Client(
-        //   uid: cred.user!.uid, 
-        //   name: name, 
-        //   email: email, 
-        //   date: Timestamp.now()
-        // );
-        await firestore.collection('users').doc(cred.user!.uid).set(user.toJson());
-        //Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
-
-      } 
-      else{
-        Get.snackbar("Error Creating Account", "Please enter all th fields");
-      }
+      UserCredential cred = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      var user = FirebaseUser(
+        uid: cred.user!.uid,
+        name: name,
+        email: email,
+        phone: signUpBody.phone
+      );
+      await firebaseUserRepo.createUser(user);
     } catch (e) {
-      Get.snackbar("Error Creating Acount", e.toString());
+      Get.snackbar("Error Creating Account", "${e.toString()}");
     }
+  
   }
   
 }

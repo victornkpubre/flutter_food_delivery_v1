@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
@@ -14,6 +15,7 @@ import 'helper/dependencies.dart' as dependencies;
 void main() async {
   //Ensures that dependencies.init() is completed before starting the app
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await dependencies.init();
   runApp(const MyApp());
 }
