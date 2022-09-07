@@ -45,6 +45,8 @@ dependencies:
   firebase_core: ^1.21.1
   firebase_auth: ^3.4.2
   cloud_firestore: ^3.4.6
+  latlong: ^0.6.1
+  location: ^4.2.0
 
 dev_dependencies:
   flutter_test:

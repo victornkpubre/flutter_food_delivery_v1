@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/platform_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -71,9 +72,7 @@ class _PaymentPageState extends State<PaymentPage> {
     return JavascriptChannel(
       name: "Toaster", 
       onMessageReceived: (JavascriptMessage message){
-        Scaffold.of(context).showSnackBar(
-          SnackBar(content: Text(message.message),)
-        );
+        Get.snackbar("Payment Error", message.message);
       }
     );
   }

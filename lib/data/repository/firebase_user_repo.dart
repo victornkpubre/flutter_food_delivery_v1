@@ -8,8 +8,12 @@ class FirebaseUserRepo {
   //final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final CollectionReference _users = FirebaseFirestore.instance.collection("users");
 
-  Stream<QuerySnapshot> getStream(){
+  Stream<QuerySnapshot> getUsersStream(){
     return _users.snapshots();
+  }
+
+   Stream<DocumentSnapshot> getUserStream(FirebaseUser user){
+    return _users.doc(user.uid).snapshots();
   }
 
 

@@ -14,7 +14,7 @@ class FirebaseUser {
      required this.name,
      required this.email,
      required this.phone,
-     this.status="",
+     this.status="offline", 
      this.client="",
      this.location= const GeoPoint(0,0),
   });
@@ -47,10 +47,7 @@ class FirebaseUser {
   factory FirebaseUser.fromSnapshot(DocumentSnapshot snapshot) {
     final newUser = FirebaseUser.fromJson(snapshot.data() as Map<String, dynamic>);
     newUser.uid = snapshot.reference.id;
-
     return newUser;
   }
-
-
 
 }
